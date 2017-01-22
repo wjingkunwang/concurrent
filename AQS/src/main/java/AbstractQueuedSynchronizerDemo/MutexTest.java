@@ -47,17 +47,14 @@ public class MutexTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService consumerService = Executors.newFixedThreadPool(10);
-        consumerService.submit(new Consumer());
 
 
-//        Thread consumerThread=new Thread(new Consumer());
-//        consumerThread.start();
-        ExecutorService produceService = Executors.newFixedThreadPool(10);
-        produceService.submit(new Produce());
+        Thread consumerThread=new Thread(new Consumer());
+        consumerThread.start();
 
-//        Thread produceThread=new Thread(new Produce());
-//        produceThread.start();
+        Thread produceThread=new Thread(new Produce());
+        produceThread.start();
+
 
     }
 }
