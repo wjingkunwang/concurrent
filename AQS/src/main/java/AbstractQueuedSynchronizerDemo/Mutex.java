@@ -1,10 +1,12 @@
+package AbstractQueuedSynchronizerDemo;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 /**
- * Created by wjk on 17/1/20.
+ * 自定义实现的一个
  */
 public class Mutex implements Lock {
     // 静态内部类，自定义同步器

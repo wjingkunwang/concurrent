@@ -1,3 +1,5 @@
+package AbstractQueuedSynchronizerDemo;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -5,42 +7,45 @@ import java.util.concurrent.Executors;
  * Created by wjk on 17/1/20.
  */
 public class MutexTest {
-    static boolean empty=true;
-    static Mutex mut=new Mutex();//互斥锁
-    static class Consumer implements Runnable{
+    static boolean empty = true;
+    static Mutex mut = new Mutex();//互斥锁
+
+    static class Consumer implements Runnable {
         @Override
         public void run() {
-            while(true){
+            while (true) {
                 //加锁
                 mut.lock();
-                try{
+                try {
                     //条件不满足，继续等待
-                    if(empty){
+                    if (empty) {
                         continue;
                     }
                     //条件满足，完成工作
                     System.out.println("从盘子里拿一个苹果！");
                     break;
-                }finally{
+                } finally {
                     mut.unlock();
                 }
             }
         }
     }
-    static class Produce implements Runnable{
+
+    static class Produce implements Runnable {
         @Override
         public void run() {
             //加锁
             mut.lock();
-            try{
+            try {
                 //该变条件
                 System.out.println("向盘子里放入一个苹果！");
-                empty=false;
-            }finally{
+                empty = false;
+            } finally {
                 mut.unlock();
             }
         }
     }
+
     public static void main(String[] args) throws InterruptedException {
         ExecutorService consumerService = Executors.newFixedThreadPool(10);
         consumerService.submit(new Consumer());
