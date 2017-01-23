@@ -11,6 +11,7 @@
     <modules>
         <module>AQS</module>
         <module>threadBasic</module>
+        <module>JUCThreadPool</module>
     </modules>
 
 
