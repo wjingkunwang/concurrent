@@ -17,17 +17,18 @@ public class LockConditionDemo {
             @Override
             public void run() {
                 lock.lock();
-                System.out.println("1--->我需要一个信号");
+                System.out.println("a--->我需要一个信号");
                 try {
                     condition.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }finally {
-                    System.out.println("1--->我拿到一个信号");
+                    System.out.println("a--->我拿到一个信号");
                     lock.unlock();
                 }
             }
         });
+
 
         Thread thread1 = new Thread(new Runnable() {
             @Override
